@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة دوري (Dawri) - توثيق وشرح المشروع الشامل</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        dawri: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        },
+                        darkglass: 'rgba(15, 23, 42, 0.75)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card-hover:hover {
+            border-color: rgba(34, 197, 94, 0.4);
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+    </style>
+</head>
+<body class="selection:bg-dawri-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-dawri-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-dawri-600/30">
+                    <i class="fa-solid fa-clock-rotate-left text-white text-2xl"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Dawri</span>
+                    <span class="block text-xs text-slate-400 font-semibold">منصة حجز وإدارة الانتظار الذكية</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-semibold text-slate-300">
+                <a href="#overview" class="hover:text-emerald-400 transition">نظرة عامة</a>
+                <a href="#modes" class="hover:text-emerald-400 transition">أنماط العمل</a>
+                <a href="#pages" class="hover:text-emerald-400 transition">أقسام المنصة</a>
+                <a href="#journeys" class="hover:text-emerald-400 transition">الرحلات</a>
+                <a href="#solutions" class="hover:text-emerald-400 transition">معالجة الثغرات</a>
+                <a href="#pricing" class="hover:text-emerald-400 transition">الأسعار</a>
+            </nav>
+            <div>
+                <a href="#pricing" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-dawri-600 to-emerald-500 text-white font-bold text-sm shadow-lg shadow-dawri-600/30 hover:shadow-dawri-500/50 hover:scale-105 transition duration-300">
+                    <i class="fa-solid fa-rocket ml-2"></i>سجّل نشاطك الآن
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-20 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-20 -right-40 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="text-center max-w-4xl mx-auto relative z-10">
+            <div class="inline-flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full glass-card border border-emerald-500/30 text-emerald-400 text-sm font-semibold mb-6">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>استثمار الوقت بدل إضاعته • وداعاً للاكتظاظ والفوضى</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
+                وثيقة المشروع الشاملة لمنصة <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent glow-text">دوري (Dawri)</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed font-normal">
+                منصة متكاملة لحجز المواعيد وإدارة قائمة الانتظار عن بُعد. تمنح العملاء حرية استغلال وقتهم وتوفر لأصحاب الأنشطة لوحة تحكم ذكية لإدارة طوابيرهم بكفاءة تامة.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#overview" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-dawri-600 to-emerald-500 text-white font-bold text-base shadow-xl shadow-dawri-600/30 hover:scale-105 transition">
+                    استكشف تفاصيل المنصة
+                </a>
+                <a href="#solutions" class="px-8 py-4 rounded-2xl glass-card text-slate-200 font-bold text-base hover:bg-slate-800 transition border border-slate-700">
+                    حلول الثغرات والنظام التقني
+                </a>
+            </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl font-black text-emerald-400 mb-1">100%</div>
+                <div class="text-sm text-slate-400">تقليص الاكتظاظ في الانتظار</div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl font-black text-emerald-400 mb-1">QR Code</div>
+                <div class="text-sm text-slate-400">وصول فوري لصفحة النشاط</div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl font-black text-emerald-400 mb-1">دج / $ / €</div>
+                <div class="text-sm text-slate-400">دعم متعدد العملات</div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl font-black text-emerald-400 mb-1">تلقائي</div>
+                <div class="text-sm text-slate-400">قوالب ذكية حسب النشاط</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-24">
+
+        <!-- 1. وصف المنصة والأهداف -->
+        <section id="overview" class="scroll-mt-28">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full pointer-events-none"></div>
+                <div class="flex items-center space-x-4 space-x-reverse mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-white">أولاً: وصف المنصة والأهداف الأساسية</h2>
+                        <p class="text-slate-400 text-sm">الفكرة العامة، الفئات المستهدفة، وغايات المشروع</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+                    <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg mb-4">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">تعريف المنصة</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            <strong>Dawri</strong> منصة حجز وإدارة انتظار ذكية. يتيح للعملاء حجز المواعيد أو الانضمام لقائمة الانتظار عن بُعد مع تلقي إشعارات تفصيلية، بينما يدير صاحب النشاط طابوره بكل سهولة من لوحة تحكم واحدة.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg mb-4">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">الفئات المستهدفة</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            الأنشطة التي تشهد طوابير واكتظاظاً يومياً مثل: الأطباء والعيادات، الحلاقون، ورشات تصليح السيارات، ورشات تنظيف السيارات، ورشات تصليح الهواتف، وغيرها من الخدمات المحلية.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg mb-4">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">الهدف الأساسي</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            تقليص مدة الانتظار واستثمار الوقت في أنشطة أخرى بدلاً من إضاعته في الصالات المزدحمة، مع تخفيف الضغط النفسي والبدني على أصحاب الأنشطة وعمالهم.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. أنماط العمل الثلاثة -->
+        <section id="modes" class="scroll-mt-28">
+            <div class="text-center mb-12">
+                <span class="text-emerald-400 text-sm font-bold uppercase tracking-wider">آلية التشغيل</span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-2">أنماط العمل الثلاثة في المنصة</h2>
+                <p class="text-slate-400 mt-2">مرونة تامة لتغطية كافة أنواع الأنشطة والخدمات</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Mode 1 -->
+                <div class="glass-card p-8 rounded-3xl glass-card-hover flex flex-col justify-between border-t-4 border-t-emerald-500">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-6 font-bold">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-3">نمط الحجز المسبق</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            مخصص للأنشطة التي تتطلب مواعيد محددة مسبقاً (مثل عيادات الأطباء أو بعض الحلاقين). يحجز العميل في الليلة السابقة أو في الصباح الباكر ليضمن دوره في ساعة محددة.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-400 border-t border-slate-800 pt-4">
+                        <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>اختيار اليوم والساعة المناسبة</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>تنبيهات وتذكيرات تلقائية</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>إضافة مواعيد يدوية من صاحب النشاط</li>
+                    </ul>
+                </div>
+
+                <!-- Mode 2 -->
+                <div class="glass-card p-8 rounded-3xl glass-card-hover flex flex-col justify-between border-t-4 border-t-teal-500">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl mb-6 font-bold">
+                            <i class="fa-solid fa-person-walking-arrow-right"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-3">النمط الحضوري (طابور مباشر)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            مخصص للحلاقين والعيادات ذات الحضور الفوري. يمسح العميل رمز QR أو يبحث عن النشاط، ينضم للطابور، يمضي وقته بحرية، ويتلقى إشعاراً عند اقتراب دوره.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-400 border-t border-slate-800 pt-4">
+                        <li><i class="fa-solid fa-check text-teal-400 ml-2"></i>مسح رمز QR أو البحث عن المحل</li>
+                        <li><i class="fa-solid fa-check text-teal-400 ml-2"></i>اختر متى تُنبّه (قبل عميل أو اثنين)</li>
+                        <li><i class="fa-solid fa-check text-teal-400 ml-2"></i>تنبيه "حان دورك" الفوري</li>
+                    </ul>
+                </div>
+
+                <!-- Mode 3 -->
+                <div class="glass-card p-8 rounded-3xl glass-card-hover flex flex-col justify-between border-t-4 border-t-cyan-500">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl mb-6 font-bold">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-3">نمط الورشة (ترك واستلام)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            مخصص لورشات تصليح الهواتف، السيارات، وتنظيفها. يسلم العميل جهازه أو سيارته، ويتتبع مراحل العمل عبر هاتفه من الاستلام حتى الجهوزية التامة للاستلام.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-400 border-t border-slate-800 pt-4">
+                        <li><i class="fa-solid fa-check text-cyan-400 ml-2"></i>مراحل: تم الاستلام ➔ بدأ العمل ➔ جاهز</li>
+                        <li><i class="fa-solid fa-check text-cyan-400 ml-2"></i>إشعارات فورية عند تغير حالة الطلب</li>
+                        <li><i class="fa-solid fa-check text-cyan-400 ml-2"></i>تخفيف الاستفسارات الهاتفية عن الورشة</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. أقسام وصفحات المنصة -->
+        <section id="pages" class="scroll-mt-28">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl">
+                <div class="flex items-center space-x-4 space-x-reverse mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-white">ثانياً: هيكل الصفحات والأقسام الكاملة</h2>
+                        <p class="text-slate-400 text-sm">تقسيم المنصة إلى صفحات عامة، صفحات العملاء، صفحات صاحب النشاط، ولوحة الإدارة</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- General Pages -->
+                    <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-emerald-400 font-bold text-lg mb-3 flex items-center">
+                            <i class="fa-solid fa-globe ml-2"></i> الصفحات العامة
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-emerald-400 mt-1.5 ml-2"></i><span><strong>الرئيسية:</strong> الفكرة، المزايا، الأسعار، زر التسجيل.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-emerald-400 mt-1.5 ml-2"></i><span><strong>البحث والاستكشاف:</strong> بالاسم، النوع، أو المدينة.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-emerald-400 mt-1.5 ml-2"></i><span><strong>صفحة النشاط العامة:</strong> وجهة QR (اسم، عنوان، ساعات العمل، الحالة).</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-emerald-400 mt-1.5 ml-2"></i><span><strong>الأسعار:</strong> مقارنة الخطط والاشتراكات.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-emerald-400 mt-1.5 ml-2"></i><span><strong>الدخول والتسجيل:</strong> بريد لصاحب النشاط، واسم ورقم هاتف للعميل.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Customer Pages -->
+                    <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-teal-400 font-bold text-lg mb-3 flex items-center">
+                            <i class="fa-solid fa-user ml-2"></i> صفحات العميل
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-teal-400 mt-1.5 ml-2"></i><span><strong>الحجز:</strong> اختيار اليوم والوقت المناسب.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-teal-400 mt-1.5 ml-2"></i><span><strong>تتبع الدور:</strong> رقم دورك، المنتظرون أمامك، الوقت التقريبي.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-teal-400 mt-1.5 ml-2"></i><span><strong>إعدادات الإشعار:</strong> التنبيه قبل عميل أو عميلين.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-teal-400 mt-1.5 ml-2"></i><span><strong>تتبع الطلب:</strong> (للورشات) تم الاستلام ➔ بدأ العمل ➔ جاهز.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-teal-400 mt-1.5 ml-2"></i><span><strong>مواعيدي:</strong> السجّلات القادمة والسابقة والمفضلة.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Business Owner Pages -->
+                    <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-cyan-400 font-bold text-lg mb-3 flex items-center">
+                            <i class="fa-solid fa-briefcase ml-2"></i> صاحب النشاط
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-cyan-400 mt-1.5 ml-2"></i><span><strong>إعداد النشاط:</strong> البيانات وتفعيل القالب تلقائياً.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-cyan-400 mt-1.5 ml-2"></i><span><strong>لوحة التحكم:</strong> ملخص يومي (منتظرين، مواعيد، منجز).</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-cyan-400 mt-1.5 ml-2"></i><span><strong>إدارة الطابور:</strong> التالي، تخطي، غائب، إنهاء.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-cyan-400 mt-1.5 ml-2"></i><span><strong>إدارة الطلبات والخدمات:</strong> تغيير الحالات والأسعار والمدة.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-cyan-400 mt-1.5 ml-2"></i><span><strong>رمز QR والإحصائيات:</strong> تحميل الرمز ومتابعة الذروة.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-cyan-400 mt-1.5 ml-2"></i><span><strong>الموظفون والفوترة:</strong> إضافة موظفين (للخطة الاحترافية).</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Admin Panel -->
+                    <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-purple-400 font-bold text-lg mb-3 flex items-center">
+                            <i class="fa-solid fa-shield-halved ml-2"></i> لوحة الإدارة (أنت)
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-purple-400 mt-1.5 ml-2"></i><span><strong>قائمة الأنشطة:</strong> مراقبة حالة الاشتراكات.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-purple-400 mt-1.5 ml-2"></i><span><strong>التحكم بالقوالب:</strong> تعديل واعتماد القوالب.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-purple-400 mt-1.5 ml-2"></i><span><strong>إدارة المدفوعات:</strong> متابعة الفواتير واشتراكات العملاء.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-chevron-left text-xs text-purple-400 mt-1.5 ml-2"></i><span><strong>أدوات الحماية:</strong> تعليق نشاط مسيء، سجلات التدقيق، واسترداد الأموال.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. رحلة صاحب النشاط ورحلة العميل -->
+        <section id="journeys" class="scroll-mt-28">
+            <div class="text-center mb-12">
+                <span class="text-emerald-400 text-sm font-bold uppercase tracking-wider">التجربة خطوة بخطوة</span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-2">رحلة المستخدمين في المنصة</h2>
+                <p class="text-slate-400 mt-2">كيف يتفاعل صاحب النشاط وكيف يستفيد العميل</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Owner Journey -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="flex items-center space-x-3 space-x-reverse mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">رحلة صاحب النشاط</h3>
+                    </div>
+                    <ol class="relative border-r border-slate-700 space-y-6 pr-6 mr-2">
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">التسجيل واختيار النشاط</h4>
+                            <p class="text-slate-400 text-xs mt-1">يتعرف على المنصة، يسجل ويحدد نوع نشاطه (طبيب، حلاق، ورشة...) فيتفعّل القالب تلقائياً.</p>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">إعداد الخدمات ورمز QR</h4>
+                            <p class="text-slate-400 text-xs mt-1">يضيف بياناته، خدماته، وساعات العمل. يحمل رمز QR ويعلقه في محله البارز.</p>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">إدارة الطابور اليومي</h4>
+                            <p class="text-slate-400 text-xs mt-1">يبدأ العمل: العملاء ينضمون عن بعد، وهو يدير الطابور من هاتفه (التالي، تخطي، غائب، إنهاء).</p>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">النمو والترقية</h4>
+                            <p class="text-slate-400 text-xs mt-1">يتابع الإحصائيات، وعند وصوله لحد الخطة المجانية يقوم بالترقية، إضافة موظفين، وتطوير عمله.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Customer Journey -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="flex items-center space-x-3 space-x-reverse mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-person-walking"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">رحلة العميل (حسب الأنماط)</h3>
+                    </div>
+                    <ol class="relative border-r border-slate-700 space-y-6 pr-6 mr-2">
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">النمط الحضوري (طبيب / حلاق)</h4>
+                            <p class="text-slate-400 text-xs mt-1">يمسح QR أو يبحث، يدخل اسمه ورقم هاتفه، يحدد متى يريد التنبيه (قبل عميل أو اثنين)، ويمضي وقته بحرية.</p>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">تلقي الإشعارات الفورية</h4>
+                            <p class="text-slate-400 text-xs mt-1">يصله إشعار "اقترب دورك"، ثم "حان دورك". يحضر ويتلقى الخدمة فوراً دون انتظار ممل.</p>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">نمط الورشة (ترك واستلام)</h4>
+                            <p class="text-slate-400 text-xs mt-1">يسلم سيارته أو هاتفه، ويتلقى إشعار "بدأ العمل"، ثم إشعار "اكتمل العمل" ليعود للاستلام مباشرة.</p>
+                        </li>
+                        <li class="relative">
+                            <div class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-900"></div>
+                            <h4 class="text-white font-bold text-sm">الحجز المسبق والعودة</h4>
+                            <p class="text-slate-400 text-xs mt-1">يبحث عن النشاط ويختار موعده. يستفيد لاحقاً من سجل "مواعيدي" والمفضلة وتذكيرات المواعيد الدورية.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. معالجة الثغرات والحلول المقترحة -->
+        <section id="solutions" class="scroll-mt-28">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl">
+                <div class="flex items-center space-x-4 space-x-reverse mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-white">سادساً: معالجة الثغرات والحلول الاستراتيجية</h2>
+                        <p class="text-slate-400 text-sm">إجابات دقيقة على التحديات التشغيلية والتقنية والمالية</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Point 1 -->
+                    <div class="bg-slate-900/70 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-comment-sms ml-2"></i> 1. نظام الإشعارات
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            في الجزائر، توفر شرائح موبيليس، أوريدو، وجيزي اشتراكات شهرية لرسائل SMS غير محدودة عبر شريحة صاحب النشاط (المستفيد الأول). بينما خارج الجزائر، يتم الاعتماد على إشعارات الويب (Web Push) وخدمات واتساب (WhatsApp).
+                        </p>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="bg-slate-900/70 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-credit-card ml-2"></i> 2. من سيدفع وكيف؟
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            صاحب النشاط هو من يدفع لأن النظام يوفر وقته ويقلل الفوضى ويزيد أرباحه. في الجزائر عبر بطاقة بريد الجزائر (Edahabia)، التحويل البنكي أو CCP، وخارج الجزائر بالدولار أو اليورو عبر بوابات الدفع العالمية.
+                        </p>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="bg-slate-900/70 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-user-slash ml-2"></i> 3. مشكلة الغياب (No-show)
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            يتم إرسال عدة تنبيهات متتالية للعميل قبل وصول دوره. عند حلول دوره وعدم حضوره، يُصنف "غائباً" ويُنتقل تلقائياً للعميل التالي لعدم تعطيل الطابور، المسؤولية تقع على العميل لعدم الالتزام.
+                        </p>
+                    </div>
+
+                    <!-- Point 4 -->
+                    <div class="bg-slate-900/70 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-earth-americas ml-2"></i> 4. التوطين (Localization)
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            دعم كامل للغات العربية، الفرنسية، والإنجليزية. وتوطين العملات بدعم الدينار الجزائري (دج) محلياً، مع الدولار الأمريكي ($) واليورو (€) للأنشطة العالمية.
+                        </p>
+                    </div>
+
+                    <!-- Point 5 -->
+                    <div class="bg-slate-900/70 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-shield-dog ml-2"></i> 5. أدوات الحماية للإدارة
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            لوحة تحكم الإدارة تمنحك صلاحيات كاملة: تعليق نشاط مسيء، مراقبة استهلاك الحدود المجانية، إدارة الفواتير والمتعثرين، طلبات استرداد الأموال (Refunds)، وسجلات التدقيق الشاملة (Audit Logs).
+                        </p>
+                    </div>
+
+                    <!-- Point 6 -->
+                    <div class="bg-slate-900/70 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-database ml-2"></i> 6. نموذج البيانات (Data Model)
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            تصميم هيكل قاعدة بيانات مرن ونظيف من اليوم الأول ليدعم توسع الأنشطة، تعدد الفروع مستقبلاً، ربط الموظفين بالطوابير، وحفظ سجلات المواعيد والمفضلة لضمان عودة العملاء المستمرة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. جدول الأسعار والخطط -->
+        <section id="pricing" class="scroll-mt-28">
+            <div class="text-center mb-12">
+                <span class="text-emerald-400 text-sm font-bold uppercase tracking-wider">خطط الأسعار والاشتراكات</span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-2">اختر الخطة المناسبة لحجم نشاطك</h2>
+                <p class="text-slate-400 mt-2">استثمر في تنظيم محلك وراحة عملائك بأسعار رمزية</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Free Plan -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="text-emerald-400 font-bold text-sm mb-1">الخطة المجانية</div>
+                        <div class="text-3xl font-black text-white mb-4">0 <span class="text-sm font-normal text-slate-400">دج / شهرياً</span></div>
+                        <p class="text-slate-400 text-xs mb-6">مناسبة للأنشطة الناشئة والتجربة الأولى.</p>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>طابور واحد فقط</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>حتى 50 عميلاً شهرياً</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>إشعارات SMS فقط</li>
+                            <li class="text-slate-500 line-through"><i class="fa-solid fa-xmark ml-2"></i>بدون إحصائيات متقدمة</li>
+                        </ul>
+                    </div>
+                    <a href="#pricing" class="mt-8 block text-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition">ابدأ مجاناً</a>
+                </div>
+
+                <!-- Basic Plan -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between border border-slate-700">
+                    <div>
+                        <div class="text-teal-400 font-bold text-sm mb-1">الخطة الأساسية</div>
+                        <div class="text-3xl font-black text-white mb-4">10 <span class="text-sm font-normal text-slate-400">دولار / شهرياً</span></div>
+                        <p class="text-slate-400 text-xs mb-6">للأنشطة الصغيرة ذات الإقبال المنتظم.</p>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li><i class="fa-solid fa-check text-teal-400 ml-2"></i>طابوران نشطان</li>
+                            <li><i class="fa-solid fa-check text-teal-400 ml-2"></i>حتى 300 عميل شهرياً</li>
+                            <li><i class="fa-solid fa-check text-teal-400 ml-2"></i>إشعارات ويب + بريد إلكتروني</li>
+                            <li><i class="fa-solid fa-check text-teal-400 ml-2"></i>إحصائيات أساسية</li>
+                        </ul>
+                    </div>
+                    <a href="#pricing" class="mt-8 block text-center py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs transition shadow-lg shadow-teal-600/20">اختيار الأساسية</a>
+                </div>
+
+                <!-- Pro Plan (Featured) -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between border-2 border-emerald-500 relative bg-slate-900/90 shadow-xl shadow-emerald-500/10">
+                    <div class="absolute -top-3 right-6 bg-emerald-500 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">الأكثر طلباً</div>
+                    <div>
+                        <div class="text-emerald-400 font-bold text-sm mb-1">الخطة الاحترافية</div>
+                        <div class="text-3xl font-black text-white mb-4">25 <span class="text-sm font-normal text-slate-400">دولار / شهرياً</span></div>
+                        <p class="text-slate-400 text-xs mb-6">للمحلات الكبيرة والعيادات النشطة.</p>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>طوابير غير محدودة</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>إضافة موظفين وتوزيع الطوابير</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>إشعارات WhatsApp (500 رسالة)</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 ml-2"></i>إحصائيات متقدمة ودعم بأولوية</li>
+                        </ul>
+                    </div>
+                    <a href="#pricing" class="mt-8 block text-center py-3 rounded-xl bg-gradient-to-r from-dawri-600 to-emerald-500 hover:scale-105 text-white font-bold text-xs transition shadow-lg shadow-dawri-600/30">اشترك الآن</a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="text-purple-400 font-bold text-sm mb-1">خطة المؤسسات</div>
+                        <div class="text-3xl font-black text-white mb-4">50 <span class="text-sm font-normal text-slate-400">دولار / شهرياً</span></div>
+                        <p class="text-slate-400 text-xs mb-6">للشركات الكبرى والفروع المتعددة (مستقبلاً).</p>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li><i class="fa-solid fa-check text-purple-400 ml-2"></i>كل مميزات الاحترافية</li>
+                            <li><i class="fa-solid fa-check text-purple-400 ml-2"></i>فروع متعددة تحت حساب واحد</li>
+                            <li><i class="fa-solid fa-check text-purple-400 ml-2"></i>تخصيص كامل للعلامة التجارية</li>
+                            <li><i class="fa-solid fa-check text-purple-400 ml-2"></i>مدير حساب خاص</li>
+                        </ul>
+                    </div>
+                    <a href="#pricing" class="mt-8 block text-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition">تواصل معنا</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-card border-t border-slate-800/80 mt-20 py-12 text-center text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex items-center justify-center space-x-3 space-x-reverse">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white text-sm font-bold">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <span class="text-xl font-bold text-white">Dawri - دوري</span>
+            </div>
+            <p>جميع حقوق توثيق المشروع محفوظة لمنصة دوري لحجز وإدارة الانتظار الذكية.</p>
+            <p class="text-xs text-slate-500">تم التصميم والتطوير لتقديم رؤية شاملة ومنظمة تغطي كافة التفاصيل والمتطلبات.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
